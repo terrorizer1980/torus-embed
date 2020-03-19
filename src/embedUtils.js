@@ -44,9 +44,16 @@ export const transformEthAddress = ethAddress => {
 export const handleEvent = (handle, eventName, handler, handlerArgs) => {
   const handlerWrapper = () => {
     handler.apply(this, handlerArgs)
-    handle.removeEventListener(eventName, handlerWrapper)
   }
-  handle.addEventListener(eventName, handlerWrapper)
+  // ensure unique event listners
+  if (handle.eventListeners === undefined) {
+    handle.eventListeners = {}
+  }
+  if (handle.eventListeners[eventName]) {
+    handle.removeEventListener(eventName, handle.eventListeners[eventName])
+  }
+  handle.eventListeners[eventName] = handlerWrapper
+  handle.addEventListener(eventName, handlerWrapper, { once: true })
 }
 
 export const handleStream = (handle, eventName, handler) => {
