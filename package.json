@@ -32,7 +32,7 @@
     "create-hash": "^1.2.0",
     "eth-json-rpc-errors": "^2.0.2",
     "fast-deep-equal": "^3.1.1",
-    "json-rpc-engine": "^5.1.8",
+    "json-rpc-engine": "^5.4.0",
     "json-rpc-middleware-stream": "^2.1.1",
     "loglevel": "^1.6.7",
     "obj-multiplex": "^1.0.0",
